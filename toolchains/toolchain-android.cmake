@@ -1221,6 +1221,12 @@ elseif( ARMEABI )
  set( ANDROID_CXX_FLAGS "${ANDROID_CXX_FLAGS} -march=armv5te -mtune=xscale -msoft-float" )
 endif()
 
+#C++11
+set( ANDROID_CXX_FLAGS "${ANDROID_CXX_FLAGS} -std=gnu++0x" )
+
+#no warnings
+set( ANDROID_CXX_FLAGS "${ANDROID_CXX_FLAGS} -w" )
+
 # STL
 if( EXISTS "${__libstl}" OR EXISTS "${__libsupcxx}" )
  if( ANDROID_STL MATCHES "gnustl" )

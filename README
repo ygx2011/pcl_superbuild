@@ -1,16 +1,1 @@
 CMake build scripts for cross compiling PCL and its dependencies for Android and iOS.
-
-Usage:
-git clone https://github.com/Bastl34/pcl_superbuild
-mkdir build
-cd build
-cmake -DBUILD_IOS_DEVICE:BOOL="ON" -DBUILD_ANDROID:BOOL="OFF" -DBUILD_IOS_SIMULATOR:BOOL="ON" ../
-make -j4
-
-
-Versions:
-Boost 1.53
-PCL 1.6 (patched)
-Eigen 3.2 beta1
-VTK (patched)
-FLANN 1.7.1

@@ -75,7 +75,7 @@ endmacro()
 #
 # VTK crosscompile
 #
-macro(crosscompile_vtk tag)
+macro(crosscompile_vtk tag ANDROID_ABI ANDROID_NATIVE_API_LEVEL ANDROID_TOOLCHAIN_NAME)
   set(proj vtk-${tag})
   get_toolchain_file(${tag})
   get_try_run_results_file(${proj})
@@ -91,6 +91,9 @@ macro(crosscompile_vtk tag)
       -DBUILD_TESTING:BOOL=OFF
       -DCMAKE_TOOLCHAIN_FILE:FILEPATH=${toolchain_file}
       -DVTKCompileTools_DIR:PATH=${build_prefix}/vtk-host
+      -DANDROID_ABI=${ANDROID_ABI}
+      -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
+      -DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}
       ${vtk_module_defaults}
       -C ${try_run_results_file}
   )
@@ -115,7 +118,7 @@ endmacro()
 #
 # VES crosscompile
 #
-macro(crosscompile_ves tag)
+macro(crosscompile_ves tag ANDROID_ABI ANDROID_NATIVE_API_LEVEL ANDROID_TOOLCHAIN_NAME)
   set(proj ves-${tag})
   get_toolchain_file(${tag})
   ExternalProject_Add(
@@ -134,6 +137,9 @@ macro(crosscompile_ves tag)
       -DVTK_DIR:PATH=${build_prefix}/vtk-${tag}
       -DEIGEN_INCLUDE_DIR:PATH=${install_prefix}/eigen
       -DPYTHON_EXECUTABLE:FILEPATH=${PYTHON_EXECUTABLE}
+      -DANDROID_ABI=${ANDROID_ABI}
+      -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
+      -DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}      
   )
 
   force_build(${proj})
@@ -157,7 +163,7 @@ endmacro()
 #
 # FLANN crosscompile
 #
-macro(crosscompile_flann tag)
+macro(crosscompile_flann tag ANDROID_ABI ANDROID_NATIVE_API_LEVEL ANDROID_TOOLCHAIN_NAME)
   set(proj flann-${tag})
   get_toolchain_file(${tag})
   ExternalProject_Add(
@@ -173,6 +179,9 @@ macro(crosscompile_flann tag)
       -DBUILD_TESTING:BOOL=OFF
       -DBUILD_PYTHON_BINDINGS:BOOL=OFF
       -DBUILD_MATLAB_BINDINGS:BOOL=OFF
+      -DANDROID_ABI=${ANDROID_ABI}
+      -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
+      -DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}      
   )
 
   force_build(${proj})
@@ -196,7 +205,7 @@ endmacro()
 #
 # Boost crosscompile
 #
-macro(crosscompile_boost tag)
+macro(crosscompile_boost tag ANDROID_ABI ANDROID_NATIVE_API_LEVEL ANDROID_TOOLCHAIN_NAME)
 
 
   set(proj boost-${tag})
@@ -211,6 +220,9 @@ macro(crosscompile_boost tag)
       -DCMAKE_BUILD_TYPE:STRING=${build_type}
       -DCMAKE_TOOLCHAIN_FILE:FILEPATH=${toolchain_file}
       -DBUILD_SHARED_LIBS:BOOL=OFF
+      -DANDROID_ABI=${ANDROID_ABI}
+      -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
+      -DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}      
   )
 
   force_build(${proj})
@@ -234,7 +246,7 @@ endmacro()
 #
 # PCL crosscompile
 #
-macro(crosscompile_pcl tag)
+macro(crosscompile_pcl tag ANDROID_ABI ANDROID_NATIVE_API_LEVEL ANDROID_TOOLCHAIN_NAME)
   set(proj pcl-${tag})
   get_toolchain_file(${tag})
   get_try_run_results_file(${proj})
@@ -264,6 +276,9 @@ macro(crosscompile_pcl tag)
       -DFLANN_INCLUDE_DIR=${install_prefix}/flann-${tag}/include
       -DFLANN_LIBRARY=${install_prefix}/flann-${tag}/lib/libflann_cpp_s.a
       -DBOOST_ROOT=${install_prefix}/boost-${tag}
+      -DANDROID_ABI=${ANDROID_ABI}
+      -DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}
+      -DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}      
       -C ${try_run_results_file}
   )
 
